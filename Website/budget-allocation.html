@@ -12,6 +12,21 @@
       .bucket-grid {
       padding: 10px;
       }
+
+      p {
+      font-size: 12px;
+      display: none;
+      }
+
+      label {
+      text-align: left;
+      }
+
+      .bucket-grid input[type="number"] {
+      float: right;
+      text-align: right;
+      }
+
     </style>
   </head>
   <body>
@@ -29,42 +44,55 @@
         <h2>Bucket Allocation</h2>
         <div class="bucket-grid">
           <div class="bucket-input">
-            <label for="bucket1">Bucket 1:</label>
+            <label for="bucket1p">Education:</label>
             <input type="number" id="bucket1" name="bucket1" min="0" required>
+            <p id="bucket1">For educational-related costs such as tuition, books, supplies, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket2">Bucket 2:</label>
+            <label for="bucket2">Food and Drink:</label>
             <input type="number" id="bucket2" name="bucket2" min="0" required>
+            <p for="bucket2">For eating out, takeout, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket3">Bucket 3:</label>
+            <label for="bucket3">Health and Fitness:</label>
             <input type="number" id="bucket3" name="bucket3" min="0" required>
+            <p for="bucket3">For gym memberships, health insurance, doctor's visits, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket4">Bucket 4:</label>
+            <label for="bucket4">Recreation:</label>
             <input type="number" id="bucket4" name="bucket4" min="0" required>
+            <p for="bucket4">For hobbies, sports, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket5">Bucket 5:</label>
+            <label for="bucket5">Fashion:</label>
             <input type="number" id="bucket5" name="bucket5" min="0" required>
+            <p for="bucket5">For clothing, shoes, accessories, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket6">Bucket 6:</label>
+            <label for="bucket6">Entertainment:</label>
             <input type="number" id="bucket6" name="bucket6" min="0" required>
+            <p for="bucket6">For movies, concerts, arts, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket7">Bucket 7:</label>
+            <label for="bucket7">Home and Vehicle:</label>
             <input type="number" id="bucket7" name="bucket7" min="0" required>
+            <p>For rent, mortgage, furniture, car payments, etc.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket8">Bucket 8:</label>
+            <label for="bucket8">Groceries:</label>
             <input type="number" id="bucket8" name="bucket8" min="0" required>
+            <p>For food and household supplies.</p>
           </div>
           <div class="bucket-input">
-            <label for="bucket9">Bucket 9:</label>
+            <label for="bucket9">Travel:</label>
             <input type="number" id="bucket9" name="bucket9" min="0" required>
+            <p>For transportation, lodging, etc.</p>
           </div>
-        </div>
+          <div class="bucket-input">
+            <label for="bucket10">Miscellaneous:</label>
+            <input type="number" id="bucket10" name="bucket10" min="0" required>
+            <p>For everything else.</p>
+          </div>
         <div class="button-container">
           <input type="submit" value="Allocate Budget">
         </div>
