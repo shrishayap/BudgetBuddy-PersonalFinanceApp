@@ -4,6 +4,11 @@
     <title>Create Account</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="login.js"></script>
+    <style>
+        body {
+            padding-bottom: 283px;
+        }
+    </style>
   </head>
   <body>
     <header>
@@ -61,9 +66,11 @@
         if (createForm.style.display === "none") {
           createForm.style.display = "block";
           loginForm.style.display = "none";
+          document.body.style.paddingBottom = "283px";
         } else {
           createForm.style.display = "none";
           loginForm.style.display = "block";
+          document.body.style.paddingBottom = "366px";
         }
       }
     </script>
