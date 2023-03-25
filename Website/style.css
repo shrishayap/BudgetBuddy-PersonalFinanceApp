@@ -1,5 +1,5 @@
 body {
-    background-color: #6B3FA0;
+    background: linear-gradient(to bottom, #6B3FA0, #6c439f, #8062a4, #8d7ba0);
     font-family: Arial, sans-serif;
     padding: 20px;
     margin: 0;
@@ -90,6 +90,10 @@ header span {
   .flex-item {
     flex-basis: 90%;
   }
+
+  
+  
+
 
 
   
