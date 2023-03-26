@@ -12,22 +12,19 @@ import os
 import time
 
 
-# account_sid = keys.account_sid
-# auth_token = keys.auth_token
+account_sid = keys.account_sid
+auth_token = keys.auth_token
 
-# # cred = credentials.Certificate("./budgetbuddy-44202-firebase-adminsdk-q9wk5-1a76e3f3d2.json")
-# # firebase_admin.initialize_app(cred)
+client = Client(account_sid, auth_token)
 
-# client = Client(account_sid, auth_token)
-
-# message = client.messages.create(
-#     body='Hey! I\'m your BudgetBuddy. How can I help you?\nType 1 to view your budget\'s current status\nType 2 for budget improvements\n or ask if you can afford an item (mention item name and price)',
-#     from_=keys.twilio_number,
-#     to=keys.target_number
-# )
+message = client.messages.create(
+    body='Hey! I\'m your BudgetBuddy. How can I help you?\nType 1 to view your budget\'s current status\nType 2 for budget improvements\n or ask if you can afford an item (mention item name and price)',
+    from_=keys.twilio_number,
+    to=keys.target_number
+)
 
 app = Flask(__name__, static_url_path='/static')
-#run_with_ngrok(app)
+run_with_ngrok(app)
 
 budget_map = {}
 spend_map = gfd.get_transactional_map()
