@@ -1,5 +1,7 @@
 const bucketInputs = document.querySelectorAll('input[name^="bucket"]');
 const totalBudgetInput = document.getElementById('total-budget');
+const submitButton = document.getElementById('submit-button');
+var budgetMap;
 
 function updateTotalBudget() {
   let total = 0;
@@ -13,7 +15,8 @@ bucketInputs.forEach(input => {
   input.addEventListener('input', updateTotalBudget);
 });
 
-function submittedBudget() {
+function submittedBudget(event) {
+    event.preventDefault();
     let budget = {};
     let categories = ["Education", "Food And Drink", "Health And Fitness", "Recreation", "Fashion And Beauty", "Entertainment", "Home And Vehicle", "Grocery", "Travel", "Miscellaneous"];
     budget.totalBudget = document.getElementById("total-budget").value;
@@ -25,5 +28,7 @@ function submittedBudget() {
         i++;
     });
     console.log(budget);
-    return budget;
+    budgetMap = budget;
 }
+
+submitButton.addEventListener('click', submittedBudget);

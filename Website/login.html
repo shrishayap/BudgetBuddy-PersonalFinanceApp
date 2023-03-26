@@ -6,7 +6,7 @@
     <script src="login.js"></script>
     <style>
         body {
-            padding-bottom: 283px;
+            padding-bottom: 199px;
         }
     </style>
   </head>
@@ -26,11 +26,15 @@
               <label for="last-name">Last Name</label>
               <input type="text" id="last-name" name="last-name" required>
             </div>
-          </div>          
+          </div>    
         <div class="input-group">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required>
         </div>
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" required>
+        </div>      
         <div class="input-group">
           <label for="phone">Phone Number:</label>
           <input type="tel" id="phone" name="phone" required>
@@ -44,8 +48,8 @@
       <form style="display:none" id="login-form">
         <h2>Login to Existing Account</h2>
         <div class="input-group">
-          <label for="login-email">Email:</label>
-          <input type="email" id="login-email" name="login-email" required>
+          <label for="login-username">Username:</label>
+          <input type="username" id="login-username" name="login-username" required>
         </div>
         <div class="input-group">
           <label for="login-password">Password:</label>
@@ -57,7 +61,6 @@
         </div>
       </form>
     </div>
-
     <script>
       function toggleForm() {
         
@@ -66,7 +69,7 @@
         if (createForm.style.display === "none") {
           createForm.style.display = "block";
           loginForm.style.display = "none";
-          document.body.style.paddingBottom = "283px";
+          document.body.style.paddingBottom = "199px";
         } else {
           createForm.style.display = "none";
           loginForm.style.display = "block";
