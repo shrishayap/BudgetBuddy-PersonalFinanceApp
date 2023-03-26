@@ -13,6 +13,7 @@ import app
 
 def affordable(category, price, budget_map):
     price = float(price)
+    category = " ".join(w.capitalize() for w in category.split())
     transactional_map = gfd.get_transactional_map()
 
     budget = budget_map[category]
