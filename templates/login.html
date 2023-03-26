@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            padding-bottom: 199px;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+        <span>Budget Buddy</span>
+    </header>
+    <div class="form-container">
+      <form id="create-form" action="/allocate" method ="GET">
+        <h2>Create Account</h2>
+        <div class="input-group flex-container">
+            <div class="flex-item">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="flex-item">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last-name" required>
+            </div>
+          </div>    
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" required>
+        </div>      
+        <div class="input-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="button-container">
+          <input type = "submit" value = "Create Account">
+          <input type="button" class="switch-page-btn" value="Login to Existing Account" onclick="toggleForm()">
+        </div>
+      </form>
+
+      <form style="display:none" id="login-form" action = "/allocate" method = "GET">
+        <h2>Login to Existing Account</h2>
+        <div class="input-group">
+          <label for="login-username">Username:</label>
+          <input type="username" id="login-username" name="login-username" required>
+        </div>
+        <div class="input-group">
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" name="login-password" required>
+        </div>
+        <div class="button-container">
+          <input type = "submit" value = "Create Account">
+          <input type="button" class="switch-page-btn" value="Create New Account" onclick="toggleForm()">
+        </div>
+      </form>
+    </div>
+    <script>
+      function toggleForm() {
+        
+        var createForm = document.querySelector("#create-form");
+        var loginForm = document.querySelector("#login-form");
+        if (createForm.style.display === "none") {
+          createForm.style.display = "block";
+          loginForm.style.display = "none";
+          document.body.style.paddingBottom = "199px";
+        } else {
+          createForm.style.display = "none";
+          loginForm.style.display = "block";
+          document.body.style.paddingBottom = "366px";
+        }
+      }
+    </script>
+  </body>
+</html>
