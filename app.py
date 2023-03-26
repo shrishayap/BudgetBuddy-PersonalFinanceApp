@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from charts.py import *
 
 app = Flask(__name__)
 
@@ -8,6 +9,8 @@ def index():
 
 @app.route("/dashboard")
 def dashboard():
+    barchart = barchart(budgetmap, spentmap)
+    piechart = piechart(budgetmap, spentmap)
     return render_template("dashboard.html")
 
 @app.route("/recommendations")
