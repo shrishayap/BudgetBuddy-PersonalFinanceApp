@@ -1,7 +1,7 @@
 import plotly.graph_objs as go
 import plotly.offline as opy
 
-def barchart(budgetmap, spentmap, format):
+def barchart(budgetmap, spentmap):
 
     x_cats = list(budgetmap.keys())
     y_budget = list(budgetmap.values())
@@ -23,14 +23,10 @@ def barchart(budgetmap, spentmap, format):
     # exceeded budget bars
     trace3 = go.Bar(x=x_cats, y=y_overlay, name='Exceeded Budget', opacity=1, marker_color='rgb(242, 138, 150)', hovertemplate='%{y:.2f} Exceeded')
 
-    layout = go.Layout(title='Spending Status', xaxis={'title': 'Categories'}, yaxis={'title': 'Dollars ($)'}, barmode='overlay')
-
+    layout = go.Layout(title='Spending Status', xaxis={'title': 'Categories'}, yaxis={'title': 'Dollars ($)'}, barmode='overlay', paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
     fig = go.Figure(data=[trace3, trace1, trace2], layout=layout)
 
-    if format == 'jpg':
-        return opy.plot(fig, auto_open=False, output_type='div')
-    else:
-        return opy.plot(fig, auto_open=False, output_type='div')
+    html = opy.plot(fig, auto_open=False, output_type='div')
     
     return html
 
@@ -84,7 +80,8 @@ def piechart(budgetmap, spentmap):
                 'args': [{'values': [budget_values], 'labels': [budget_labels], 'visible': [False, True]}, {'title': 'Breakdown According to Budget'}]
             }]
         }],
-        annotations=[dict(text='Double-click to switch data', x=0.5, y=0.5, font=dict(size=20), showarrow=False)]
+        # annotations=[dict(text='', x=0.5, y=0.5, font=dict(size=20), showarrow=False)],
+        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)'
     )
 
     frames = [go.Frame(data=[go.Pie(labels=budget_labels, values=budget_values, name='Budget', hole=0.5)]),
@@ -98,14 +95,14 @@ def piechart(budgetmap, spentmap):
 
     return html
 
-budgetmap = {'fashion': 50, 'food': 150, 'utilities': 100, 'transportation': 60}
-spentmap = {'fashion': 40, 'food': 100, 'utilities': 140, 'transportation': 80}
+# budgetmap = {'fashion': 50, 'food': 150, 'utilities': 100, 'transportation': 60}
+# spentmap = {'fashion': 40, 'food': 100, 'utilities': 140, 'transportation': 80}
 
-html = barchart(budgetmap, spentmap, "html")
-html1 = piechart(budgetmap, spentmap)
+# html = barchart(budgetmap, spentmap)
+# html1 = piechart(budgetmap, spentmap)
 
-with open("barchart.html", "w") as file:
-    file.write(html)
+# with open("barchart.html", "w") as file:
+#     file.write(html)
 
-with open("piechart.html", "w") as file:
-    file.write(html1)
+# with open("piechart.html", "w") as file:
+#     file.write(html1)

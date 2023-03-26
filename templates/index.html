@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BudgetBuddy Dashboard</title>
+	<style>
+		header {
+			background-color: #000000;
+			color: white;
+			text-align: center;
+			padding: 50px;
+			font-size: 48px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		
+		
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		
+		.container img {
+			width: 50%;
+			height: auto;
+		}
+		
+		.text-block {
+			background-color: #f2f2f2;
+			padding: 40px;
+			text-align: left;
+			font-size: 24px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<header><img src="{{ url_for('static', filename='logo.png') }}" alt="My Logo"></header>
+
+	 
+    
+	
+	<div class="container" style="justify-content: center;">
+    <iframe src="barchart.html" frameborder="0" style="width: 75vw; height: 50vh;"></iframe>
+    <iframe src="piechart.html" frameborder="0" style="width: 75vw; height: 50vh;"></iframe>
+	</div>
+	
+</body>
+</html>
+
+
