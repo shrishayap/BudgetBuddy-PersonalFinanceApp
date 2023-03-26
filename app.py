@@ -3,7 +3,8 @@ from flask_ngrok import run_with_ngrok
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
 import keys
-import openai_apitest
+import gpt
+import decision
 
 account_sid = keys.account_sid
 auth_token = keys.auth_token
@@ -14,7 +15,7 @@ auth_token = keys.auth_token
 client = Client(account_sid, auth_token)
 
 message = client.messages.create(
-    body='Hey! I\'m your BudgetBuddy. How can I help you?\nType 1 to view your budget\'s current status\nType 2 to see if you can afford an item\nType 3 for budget improvements\n',
+    body='Hey! I\'m your BudgetBuddy. How can I help you?\nType 1 to view your budget\'s current status\nType 2 for budget improvements\n or ask if you can afford an item (mention item name and price)',
     from_=keys.twilio_number,
     to=keys.target_number
 )
@@ -22,9 +23,40 @@ message = client.messages.create(
 app = Flask(__name__)
 run_with_ngrok(app)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+#get responses with ngrok
+@app.route('/sms', methods=['POST'])
+def receive_sms():
+    body = request.values.get('Body', None)
+    resp = MessagingResponse()
+
+    if body == '1':
+        #Get current financial status
+        resp.message(decision.financial_status())
+    elif body == '2':
+        #Ask GPT to improve my habits
+        print("Got 2")
+        improvement_response = decision.how_improve()
+        resp.message(improvement_response)
+    else:
+        item, price, category = gpt.parse(body)   #(item, price, category)
+        try:
+            resp.message(decision.affordable(category, price))
+        except Exception as e:
+            print(e)
+            resp.message("Please enter a valid message")
+  
+
+    return str(resp)
+
+if __name__ == "__main__":
+    app.run()
+
+
 
 # @app.route('/')
 # def index():
@@ -57,34 +89,3 @@ def index():
 #     else:
 #         print("TEST HERE 12345")
 #         return render_template('login.html')
-
-#get responses with ngrok
-@app.route('/sms', methods=['POST'])
-def receive_sms():
-    body = request.values.get('Body', None)
-    resp = MessagingResponse()
-
-    gpt_response_tuple = openai_apitest.parse(body) #(item, price, category)
-
-    item = gpt_response_tuple[0]
-    price = gpt_response_tuple[1]
-    category = gpt_response_tuple[2]
-
-    if body == '1':
-        #Ask GPT to see if user can afford the item
-        #Send the okay/NI/bad
-        pass
-    elif body == '2':
-        #get outstanding buckets, and ask Chat how to improve them
-        pass
-    elif body == '3':
-        #Ask GPT to improve my habits
-        improvement_response = openai_apitest.gpt_improve_response(category)
-        resp.message(improvement_response)
-    else:
-        resp.message("Invalid Input. Please reply with 1, 2, or 3")
-
-    return str(resp)
-
-if __name__ == "__main__":
-    app.run()
